@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GAILERT – Landing</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root{
+      --blue:#0b1d33;
+      --accent:#0066ee;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;}
+    body{background:#f4f7fa;color:#222; line-height: 1.6;}
+    nav{background:var(--blue);display:flex;align-items:center;padding:2rem 2rem;color:#fff;}
+    nav .logo{display: flex; margin: 0;cursor: pointer; align-items: center; margin-right: auto;}
+    nav .logo img {height: 50px; width: auto; max-width: 100px; object-fit: contain;}
+    nav ul{display:flex;gap:1.5rem;list-style:none;}
+    nav a{color:#fff;text-decoration:none;font-size:1rem; text-transform: uppercase;}
+    nav a:hover{color:#7db9ff;}
+
+    /* HERO */
+    .hero{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;min-height:calc(100vh - 60px);padding:2rem 1.5rem;max-width:1200px;margin:auto;}
+    .hero img{width:100%;max-width:550px;height: 50vh;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15); object-fit: cover;}
+    .hero h1{font-size:2.4rem;margin:.5rem 0 1.2rem;}
+    .controls{display:flex;gap:1rem;}
+    .controls button{
+      width:44px;height:44px;border:none;border-radius:50%;
+      background:var(--accent);color:#fff;font-size:1.2rem;
+      cursor:pointer;transition:.2s;
+    }
+    .controls button:hover{background:#004bb3;}
+    
+    /* RESPONSIVE */
+    @media(max-width:700px){
+      nav ul{flex-direction:column;gap:.5rem;}
+      .hero{align-items:center;text-align:center;}
+    }
+
+    /* ABOUT ONLY */
+    .container{max-width:1100px;margin:auto;padding:2rem 1.5rem;}
+       /* -------- TOP SECTION -------- */
+    .top{display:flex;gap:2rem;flex-wrap:wrap;align-items:flex-start;}
+    .images{display:flex;flex-direction:column;gap:1rem;flex:1 1 300px;}
+    .images img{border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);}
+    .images img:nth-child(1){width:260px;height:160px;}
+    .images img:nth-child(2){width:220px;height:130px;align-self:center;}
+    .images img:nth-child(3){width:180px;height:110px;align-self:flex-end;}
+
+    .about-text{flex:1 1 300px;}
+    .about-text h2{margin-bottom:.75rem;font-size:2rem;color:var(--blue);}
+    .about-text p{margin-bottom:1.2rem;color:#444;}
+    .read-more{
+      display:inline-block;padding:.6rem 1.4rem;background:var(--accent);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:.95rem;transition:.2s;
+    }
+    .read-more:hover{background:#004bb3;}
+
+    /* -------- BOTTOM SECTION -------- */
+    .bottom{margin-top:4rem;}
+    .bottom h3{font-size:1.8rem;margin-bottom:2rem;color:var(--blue);}
+    .statement{display:flex;align-items:flex-start;gap:1rem;margin-bottom:2rem;}
+    .statement .number{
+      font-size:7rem;font-weight:800;color:var(--fade);line-height:1;
+      user-select:none;flex-shrink:0;
+    }
+    .statement p{margin-top:.4rem;color:#333;max-width:600px;}
+
+
+
+/* OUR PROJECT */
+.containerpro{max-width:1100px;margin:auto;padding:2rem 1.5rem;}
+    h1{margin-bottom:2rem;font-size:2.2rem;color:var(--blue);}
+
+    /* 2-ROW GRID */
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      grid-template-rows:repeat(2,300px);   /* same height for every box */
+      gap:1rem;
+    }
+
+    /* TOP ROW (2 boxes) */
+    .grid .box:nth-child(1){grid-column:1/3;grid-row:1/2;}   /* spans 2 cols */
+    .grid .box:nth-child(2){grid-column:3/6;grid-row:1/2;}   /* spans 3 cols */
+
+    /* BOTTOM ROW (3 boxes) */
+    .grid .box:nth-child(3){grid-column:1/3;grid-row:2/3;}
+    .grid .box:nth-child(4){grid-column:3/5;grid-row:2/3;}
+    .grid .box:nth-child(5){grid-column:5/6;grid-row:2/3;}
+
+    .box{
+      position:relative;
+      border-radius:8px;
+      overflow:hidden;
+    }
+    .box img{
+      width:100%;height:100%;object-fit:cover;display:block;
+    }
+
+    /* OVERLAY FOR FIRST BOX */
+    .overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(0,0,0,.55);
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      color:#fff;
+      text-align:center;
+      padding:1rem;
+    }
+    .overlay h3{font-size:1.6rem;margin-bottom:.75rem;}
+    .overlay .read-more{
+      padding:.55rem 1.2rem;
+      background:#fff;
+      color:var(--blue);
+      border:none;
+      border-radius:4px;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s;
+    }
+    .overlay .read-more a {
+      text-decoration: none;
+      color: #333;
+    }
+    .overlay .read-more:hover{background:var(--fade);}
+
+    /* ALL PROJECTS BUTTON */
+    .all-projects{
+      margin-top:2.5rem;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .all-projects button{
+      padding:.75rem 1.8rem;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-size:1rem;
+      cursor:pointer;
+    }
+    .all-projects button:hover{background:#004bb3;}
+
+    /*CERTIICATION*/
+      /* ---------- HERO / HEADINGS ---------- */
+    header {
+      text-align: center;
+      padding: 3rem 1.5rem;
+    }
+
+    header h1 {
+      font-size: 2.4rem;
+      color: var(--blue);
+      margin-bottom: .5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    /* ---------- CARD GRID ---------- */
+    .grid {
+      max-width: 1000px;
+      margin: 0 auto 4rem;
+      padding: 0 1.5rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .08);
+      transition: transform .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    .card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 1.2rem 1.4rem 1.6rem;
+    }
+
+    .card h2 {
+      font-size: 1.25rem;
+      margin-bottom: .4rem;
+      color: var(--blue);
+    }
+
+    .card p {
+      font-size: .9rem;
+      color: #444;
+      margin-bottom: 1rem;
+    }
+
+    .card .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      padding: .4rem .8rem;
+      font-size: .75rem;
+      border-radius: 4px;
+    }
+
+    /*CONTACT US */
+
+     .bottle{max-width:1100px;margin:auto;padding:2rem 1.5rem;}
+    .bottle h1{margin-bottom:2rem;font-size:2.2rem;color:var(--blue);text-align:center;}
+
+    /* Flex row for form + image */
+    .contact-row{
+      display:flex;
+      gap:2rem;
+      flex-wrap:wrap;
+    }
+
+    /* Shared height container */
+    .contact-row > *{
+      flex:1 1 300px;
+      height:450px;   /* same height for both sides */
+    }
+
+    /* FORM */
+    form{
+      display:flex;
+      flex-direction:column;
+      gap:.8rem;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:.75rem;
+      border:1px solid #ccc;
+      border-radius:4px;
+      font-size:.95rem;
+    }
+    textarea{flex:1 1 auto; min-height:120px;} /* taller message box */
+
+    /* IMAGE */
+    .pic-wrapper{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .pic-wrapper img{
+      width:100%;height:100%;object-fit:cover;border-radius:8px;
+    }
+
+    /* SEND BUTTON (spans underneath both) */
+    .send-wrapper{
+      margin-top:2rem;
+      text-align:center;
+    }
+    .send-wrapper button{
+      padding:.9rem 2.6rem;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-size:1rem;
+      cursor:pointer;
+    }
+    .send-wrapper button:hover{background:#004bb3;}
+
+
+    /*FOOTER*/
+
+    .site-footer {
+  background: #0b1d33;
+  color: #fff;
+  padding: 2.5rem 1rem 1rem;
+  font-size: .9rem;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.footer-logo img {
+  max-width: 150px;
+  height: auto;
+}
+
+.footer-inner h4 {
+  margin-bottom: .7rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-inner ul {
+  list-style: none;
+}
+
+.footer-inner a {
+  color: #b8c5d6;
+  text-decoration: none;
+}
+
+.footer-inner a:hover {
+  color: #fff;
+}
+
+address {
+  font-style: normal;
+  line-height: 1.7;
+}
+
+.socials {
+  display: flex;
+  gap: .8rem;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.newsletter {
+  display: flex;
+  gap: .4rem;
+  margin-top: .5rem;
+}
+
+.newsletter input {
+  flex: 1;
+  padding: .5rem;
+  border: none;
+  border-radius: 4px 0 0 4px;
+  font-size: .85rem;
+}
+
+.newsletter button {
+  padding: .5rem .9rem;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background: #ff6363;
+  color: #fff;
+  font-size: .85rem;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  border-top: 1px solid #273c5c;
+  padding-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center
+}
+  </style> 
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo"><img src="logos.png" alt="myCompany"></div>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#container">Gallery</a></li>
+      <li><a href="#containerpro">Project</a></li>
+      <li><a href="#certified">Certification</a></li>
+      <li><a href="#bottle">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO / LANDING -->
+  <section class="hero" id="hero">
+    <img id="hero-img" src="sky.jpg" alt="hero" />
+    <h1>Build, Certify, Deliver</h1>
+    <div class="controls">
+      <button id="prev" title="Previous"><i class="fas fa-chevron-left"></i></button>
+      <button id="next" title="Next"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </section>
+  <!--  ABOUT ONLY-->
+
+  <div id="container" class="container">
+    <!-- TOP SECTION -->
+    <section class="top">
+      <div class="images">
+        <img src="cona.jpg" alt="img1">
+        <img src="wyt huz.jpg" alt="img2">
+        <img src="craft.jpg" alt="img3">
+      </div>
+
+      <div class="about-text">
+        <h2>About Us</h2>
+        <p>
+          GAILERT empowers professionals worldwide through industry-leading certifications,
+          cutting-edge project frameworks, and an ever-growing knowledge hub.
+          We believe skills should be practical, measurable, and immediately applicable.
+        </p>
+        <button class="read-more">Read more</button>
+      </div>
+    </section>
+
+    <!-- BOTTOM SECTION -->
+    <section class="bottom">
+      <h3>Mission Statement / Vision Statement</h3>
+
+      <div class="statement">
+        <div class="number">1</div>
+        <div>
+          <strong>Mission Statement</strong>
+          <p>
+            To deliver accessible, high-impact education that transforms ambitious
+            learners into sought-after experts capable of solving tomorrow’s challenges today.
+          </p>
+        </div>
+      </div>
+
+      <div class="statement">
+        <div class="number">2</div>
+        <div>
+          <strong>Vision Statement</strong>
+          <p>
+            A future where every organization, regardless of size or geography,
+            can leverage certified talent to drive sustainable innovation and inclusive growth.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+    <!--OUR PROJECT-->
+      <div id="containerpro" class="containerpro">
+    <h1>Our Projects</h1>
+
+    <!-- GRID -->
+    <div class="grid">
+      <!-- TOP ROW -->
+      <div class="box">
+        <img src="cona.jpg" alt="project1">
+        <div class="overlay">
+          <h3>Sample Project</h3>
+          <button class="read-more"><a href="gallery/sample.html">Read More</a></button>
+        </div>
+      </div>
+      <div class="box">
+        <img src="raud.jpg" alt="project2">
+      </div>
+
+      <!-- BOTTOM ROW -->
+      <div class="box">
+        <img src="hola.jpg" alt="project3">
+      </div>
+      <div class="box">
+        <img src="craft.jpg" alt="project4">
+      </div>
+      <div class="box">
+        <img src="sly.jpg" alt="project5">
+      </div>
+    </div>
+
+    <!-- ALL PROJECTS BUTTON -->
+    <div class="all-projects">
+      <button>All Projects</button>
+    </div>
+  </div>
+
+  <!--CERTIFICATION-->
+  <header id="certified">
+    <h1>  Certifications</h1>
+    <p>DIGITAL PROJECT</p>
+  </header>
+
+  <!-- CERTIFICATION CARDS -->
+  <section class="grid">
+    <!-- Card 1 -->
+    <div class="card">
+      <img src="cert.png" alt="Cert 1">
+      <div class="card-content">
+        <h2>Certification One</h2>
+        <p>Master the fundamentals of digital project management.</p>
+        <span class="badge">NEW</span>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="card">
+      <img src="https://picsum.photos/600/400?random=102" alt="Cert 2">
+      <div class="card-content">
+        <h2>Certification Two</h2>
+        <p>Advanced cost accounting techniques for agile teams.</p>
+        <span class="badge">POPULAR</span>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="card">
+      <img src="https://picsum.photos/600/400?random=103" alt="Cert 3">
+      <div class="card-content">
+        <h2>Certification Three</h2>
+        <p>End-to-end project leadership with real-world case studies.</p>
+        <span class="badge">LIMITED</span>
+      </div>
+    </div>
+  </section>
+
+<!--CONTACT US -->
+
+<div id="bottle" class="bottle">
+    <h1>Contact Us</h1>
+
+    <div class="contact-row">
+      <!-- LEFT: FORM -->
+      <form>
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="tel" name="phone" placeholder="Phone Number">
+        <input type="email" name="email" placeholder="Email" required>
+        <select name="interest" required>
+          <option value="" disabled selected>Interest</option>
+          <option>Certification</option>
+          <option>Project Consulting</option>
+          <option>Partnership</option>
+          <option>Other</option>
+        </select>
+        <textarea name="message" placeholder="Message" required></textarea>
+      </form>
+
+      <!-- RIGHT: IMAGE -->
+      <div class="pic-wrapper">
+        <img src="CALL.jpg" alt="Person making a call">
+      </div>
+    </div>
+
+    <!-- SEND BUTTON -->
+    <div class="send-wrapper">
+      <button type="submit" form="contactForm">Send Email</button>
+    </div>
+  </div>
+
+   <!-- ======= STANDARD FOOTER ======= -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <!-- Logo -->
+    <div class="footer-logo">
+      <img src="logos.png" alt="Company Logo">
+    </div>
+    <!-- 1. Navigation -->
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#container">Gallery</a></li>
+        <li><a href="#bottle">Contact</a></li>
+        <li><a href="#containerpro">Project</a></li>
+        <li><a href="#certified">Certification</a></li>
+      </ul>
+    </div>
+    <!-- 2. Contact -->
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <address>
+        123 Innovation Drive<br>
+        San Francisco, CA 94107<br>
+        <a href="tel:+14155550123">+1 (415) 555-0123</a><br>
+        <a href="mailto:hello@company.com">hello@company.com</a>
+      </address>
+    </div>
+    <!-- 3. Social & Newsletter -->
+    <div class="footer-col">
+      <h4>Stay Connected</h4>
+       <div class="socials">
+        <a href="https://facebook.com/company" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/company"  aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="https://linkedin.com/company" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://instagram.com/company" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+      <form class="newsletter" action="#" method="post">
+        <input type="email" placeholder="Email newsletter" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </div>
+  <!-- Bottom bar -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 Company Inc. All rights reserved.</p>
+    <a href="#top" class="back-to-top">Back to top ↑</a>
+  </div>
+</footer>
+<!-- Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <script>
+    // Simple image slider
+    const images = [
+      "wyt huz.jpg",
+      "sky.jpg",
+      "multi.jpg",
+      "craft.jpg"
+    ];
+    let current = 0;
+    const img = document.getElementById('hero-img');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    function updateImg() { img.src = images[current]; }
+    prevBtn.onclick = () => { current = (current - 1 + images.length) % images.length; updateImg(); };
+    nextBtn.onclick = () => { current = (current + 1) % images.length; updateImg(); };
+  </script>
+
+</body>
+</html>
